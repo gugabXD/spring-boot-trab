@@ -11,6 +11,6 @@ public class Controller {
     @GetMapping("")
     @CrossOrigin(origins = "*")
     public String getMethodName() {
-        return "teste";
+        return "teste de conexão";
     }
 }
