@@ -1,4 +1,4 @@
-package com.projarq.trabfinal.domain.entities;
+package com.projarq.trabfinal.domain.entities.ApplicationModel;
 
 public class ApplicationModel {
     
