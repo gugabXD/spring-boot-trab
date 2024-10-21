@@ -1,4 +1,4 @@
-package com.projarq.trabfinal;
+package com.projarq.trabfinal.adapterInterface;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
