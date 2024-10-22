@@ -1,4 +1,4 @@
-package com.projarq.trabfinal.adapterInterface;
+package com.projarq.trabfinal.adapterInterface.controllers;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -63,3 +63,4 @@ public class Controller {
         return "Pagamento registrado com sucesso!";
     }
 }
+
