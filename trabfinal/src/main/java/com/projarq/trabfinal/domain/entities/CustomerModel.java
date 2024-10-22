@@ -1,12 +1,12 @@
-package com.projarq.trabfinal.domain;
+package com.projarq.trabfinal.domain.entities;
 
-public class Customer {
-    
+public class CustomerModel {
+
     private String name;
     private long code;
     private String email;
 
-    public Customer(long code, String name, String email) {
+    public CustomerModel(long code, String name, String email) {
         this.code = code;
         this.name = name;
         this.email = email;
@@ -23,6 +23,5 @@ public class Customer {
     public String getEmail() {
         return email;
     }
-
 
 }

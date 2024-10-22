@@ -1,9 +1,9 @@
-package com.projarq.trabfinal.domain;
-
 import java.util.Date;
 
-public class Subscription {
+package com.projarq.trabfinal.domain.entities;
 
+public class Subscription {
+    
     private long code;
     private Application application;
     private Customer customer;
@@ -37,5 +37,4 @@ public class Subscription {
     public Date getEndContractPeriod() {
         return endContractPeriod;
     }
-
 }

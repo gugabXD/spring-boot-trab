@@ -1,11 +1,12 @@
-package com.projarq.trabfinal.domain;
+package com.projarq.trabfinal.domain.entities.ApplicationModel;
 
-public class Application {
+public class ApplicationModel {
+    
     private String name;
     private long code;
     private double monthCost;
 
-    public Application(long code, String name, double monthCost) {
+    public ApplicationModel(long code, String name, double monthCost) {
         this.code = code;
         this.name = name;
         this.monthCost = monthCost;
@@ -22,4 +23,5 @@ public class Application {
     public double getMonthCost() {
         return monthCost;
     }
+    
 }

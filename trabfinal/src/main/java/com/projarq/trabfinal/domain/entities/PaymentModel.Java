@@ -1,17 +1,17 @@
-package com.projarq.trabfinal.domain;
-
-import org.springframework.boot.autoconfigure.pulsar.PulsarProperties.Consumer.Subscription;
 import java.util.Date;
 
-public class Payment {
+package com.projarq.trabfinal.domain.entities.PaymentModel;
 
+
+public class PaymentModel {
+    
     private long code;
     private Subscription subscription;
     private Double amountPaid;
     private Date date;
     private String sale;
 
-    public Payment(long code, Subscription subscription, Double amountPaid, Date date, String sale) {
+    public PaymentModel(long code, Subscription subscription, Double amountPaid, Date date, String sale) {
         this.code = code;
         this.subscription = subscription;
         this.amountPaid = amountPaid;

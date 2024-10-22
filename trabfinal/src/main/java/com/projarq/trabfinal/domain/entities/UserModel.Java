@@ -1,10 +1,11 @@
-package com.projarq.trabfinal.domain;
+package com.projarq.trabfinal.domain.entities;
 
-public class User {
+public class UserModel {
+    
     private String user;
     private String password;
 
-    public User(String user, String password) {
+    public UserModel(String user, String password) {
         this.user = user;
         this.password = password;
     }
