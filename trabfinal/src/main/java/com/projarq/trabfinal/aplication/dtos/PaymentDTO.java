@@ -1,6 +1,5 @@
 package com.projarq.trabfinal.aplication.dtos;
 
-import com.projarq.trabfinal.domain.entities.PaymentModel;
 
 public class PaymentDTO {
     private Long id;
@@ -25,8 +24,5 @@ public class PaymentDTO {
         return status;
     }
 
-    public static PaymentDTO toDTO(PaymentModel payment) {
-        return new PaymentDTO(payment.getId(), payment.getAmount(), payment.getStatus());
-    }
 
 }

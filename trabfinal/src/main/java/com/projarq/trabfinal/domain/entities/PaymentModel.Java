@@ -1,6 +1,6 @@
+package com.projarq.trabfinal.domain.entities;
 import java.util.Date;
 
-package com.projarq.trabfinal.domain.entities.PaymentModel;
 
 
 public class PaymentModel {
