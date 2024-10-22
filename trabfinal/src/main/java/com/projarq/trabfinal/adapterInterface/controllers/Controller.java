@@ -48,13 +48,13 @@ public class Controller {
     }
 
     @GetMapping("/servcad/asscli/{codcli}")
-    public List<Map<String, Object>> getClientSubscriptions(@PathVariable String codcli) {  
+    public List<Map<String, Object>> getClientSubscriptions(@PathVariable String codcli) {
         return new ArrayList<>();
     }
 
     @GetMapping("/servcad/assapp/{codapp}")
     public List<Map<String, Object>> getAppSubscriptions(@PathVariable String codapp) {
-        
+
         return new ArrayList<>();
     }
 
@@ -62,5 +62,9 @@ public class Controller {
     public String registerPayment(@RequestBody Map<String, Object> paymentData) {
         return "Pagamento registrado com sucesso!";
     }
-}
 
+    @GetMapping("/assinvalida/{codass}")
+    public boolean isSubscriptionInvalid(@PathVariable String codass) {
+        return false;
+    }
+}
