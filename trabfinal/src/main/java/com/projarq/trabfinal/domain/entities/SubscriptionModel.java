@@ -1,16 +1,16 @@
-import java.util.Date;
-
 package com.projarq.trabfinal.domain.entities;
 
-public class Subscription {
-    
-    private long code;
-    private Application application;
-    private Customer customer;
+import java.util.Date;
+
+public class SubscriptionModel {
+
+    private Long code;
+    private ApplicationModel application;
+    private CustomerModel customer;
     private Date beginContractPeriod;
     private Date endContractPeriod;
 
-    public Subscription(long code, Application application, Customer customer, Date beginContractPeriod, Date endContractPeriod) {
+    public SubscriptionModel(Long code, ApplicationModel application, CustomerModel customer, Date beginContractPeriod, Date endContractPeriod) {
         this.code = code;
         this.application = application;
         this.customer = customer;
@@ -18,15 +18,15 @@ public class Subscription {
         this.endContractPeriod = endContractPeriod;
     }
 
-    public long getCode() {
+    public Long getCode() {
         return code;
     }
 
-    public Application getApplication() {
+    public ApplicationModel getApplication() {
         return application;
     }
 
-    public Customer getCustomer() {
+    public CustomerModel getCustomer() {
         return customer;
     }
 

@@ -1,17 +1,17 @@
 package com.projarq.trabfinal.domain.entities;
-import java.util.Date;
 
+import java.util.Date;
 
 
 public class PaymentModel {
     
-    private long code;
-    private Subscription subscription;
+    private Long code;
+    private SubscriptionModel subscription;
     private Double amountPaid;
     private Date date;
     private String sale;
 
-    public PaymentModel(long code, Subscription subscription, Double amountPaid, Date date, String sale) {
+    public PaymentModel(Long code, SubscriptionModel subscription, Double amountPaid, Date date, String sale) {
         this.code = code;
         this.subscription = subscription;
         this.amountPaid = amountPaid;
@@ -19,11 +19,11 @@ public class PaymentModel {
         this.sale = sale;
     }
 
-    public long getCode() {
+    public Long getCode() {
         return code;
     }
 
-    public Subscription getSubscription() {
+    public SubscriptionModel getSubscription() {
         return subscription;
     }
 
