@@ -1,11 +1,8 @@
 package com.projarq.trabfinal.adapterInterface.repositories.repositoriesImplementation;
 
-import com.bcopstein.t1.adaptadorDeInterface.entidades.Usuario;
-import com.bcopstein.t1.aplicacao.repositorios.IUsuarioRepository;
-import com.bcopstein.t1.dominio.models.UsuarioModel;
-import com.bcopstein.t1.infraestrutura.repositorios.UsuarioRepositoryJpa;
 
 import com.projarq.trabfinal.adapterInterface.repositories.entities.User;
+import com.projarq.trabfinal.domain.entities.UserModel;
 import com.projarq.trabfinal.domain.repositoriesInterfaces.UserRepositoryInterface;
 import com.projarq.trabfinal.adapterInterface.repositories.jpaInterfaces.JpaUserRepositoryInterface;
 
@@ -19,12 +16,13 @@ public class UserRepository implements UserRepositoryInterface {
     private JpaUserRepositoryInterface jpaUserRepositoryInterface;
 
     @Autowired
-    public UsuarioRepositoryImpl(UsuarioRepositoryJpa usuarioRepositoryJpa) {
-        this.jpaUserRepositoryInterface = usuarioRepositoryJpa;
+    public UserRepository(JpaUserRepositoryInterface jpaUserRepositoryInterface) {
+        this.jpaUserRepositoryInterface = jpaUserRepositoryInterface;
     }
 
     @Override
-    public List<UsuarioModel> findByLogin(String login) {
-        return jpaUserRepositoryInterface.findByLogin(login).stream().map(User::toUsuarioModel).toList();
+    public List<UserModel> findByName(String name) {
+        return jpaUserRepositoryInterface.findByName(name).stream().map(User::toUserModel).toList();
     }
+
 }

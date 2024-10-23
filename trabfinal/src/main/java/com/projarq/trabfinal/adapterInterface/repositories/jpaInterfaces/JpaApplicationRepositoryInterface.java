@@ -11,11 +11,11 @@ import java.util.List;
 public interface JpaApplicationRepositoryInterface extends JpaRepository<App, Long> {
     List<App> findAll();
 
-    App findById(long id);
+    App findByCode(long code);
 
-    List<App> findByNome(String nome);
+    List<App> findByName(String nome);
 
     App findByMonthlyCost(double monthlyCost);
 
-    App save(App aplicativo);
+    ApplicationModel save(ApplicationModel aplicativo);
 }

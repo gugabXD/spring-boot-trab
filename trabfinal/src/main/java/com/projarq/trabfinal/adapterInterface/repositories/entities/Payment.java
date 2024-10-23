@@ -1,7 +1,6 @@
 package com.projarq.trabfinal.adapterInterface.repositories.entities;
 
 import com.projarq.trabfinal.domain.entities.PaymentModel;
-import com.projarq.trabfinal.domain.entities.SubscriptionModel;
 import java.util.Date;
 
 import jakarta.persistence.Entity;
@@ -70,24 +69,13 @@ public class Payment {
     }
 
     public static PaymentModel toPaymentModel(Payment pagamento) {
-        return new PaymentModel(
-                pagamento.getCode(),
-                Subscription.toSubscriptionModel(pagamento.getSubscription_code()),
-                pagamento.getAmount_paid(),
-                pagamento.getPaymentDate(),
-                pagamento.getSale()
-
-        );
+        return new PaymentModel(pagamento.getCode(), Subscription.toSubscriptionModel(pagamento.getSubscription_code()), 
+        pagamento.getAmount_paid(), pagamento.getPaymentDate(), pagamento.getSale());
     }
 
     public static Payment fromPaymentModel(PaymentModel paymentModel) {
-        return new Payment(
-                paymentModel.getCode(),
-                Subscription.fromSubscriptionModel(paymentModel.getSubscription()),
-                paymentModel.getAmountPaid(),
-                paymentModel.getDate(),
-                paymentModel.getSale()
-        );
+        return new Payment(paymentModel.getCode(), Subscription.fromSubscriptionModel(paymentModel.getSubscription()),
+                paymentModel.getAmountPaid(), paymentModel.getDate(), paymentModel.getSale());
     }
 
 }

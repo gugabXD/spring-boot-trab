@@ -1,5 +1,7 @@
 package com.projarq.trabfinal.adapterInterface.repositories.entities;
 
+import com.projarq.trabfinal.domain.entities.UserModel;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -33,6 +35,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public static UserModel toUserModel(User user){
+        return new UserModel(user.getuser_name(), user.getPassword());
+    }
+
+    public static User fromUserModel(UserModel userModel){
+        return new User(userModel.getUser(),userModel.getPassword());
     }
 
 }

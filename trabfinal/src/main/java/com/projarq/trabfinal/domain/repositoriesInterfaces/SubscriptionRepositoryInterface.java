@@ -10,14 +10,14 @@ public interface SubscriptionRepositoryInterface {
     List<SubscriptionModel> findAll();
     List<SubscriptionModel> findByCustomer(CustomerModel customer);
     List<SubscriptionModel> findByCustomerCode(long code);
-    List<SubscriptionModel> findByApplication(ApplicationModel application);
-    List<SubscriptionModel> findByApplicationCode(Long code);
+    List<SubscriptionModel> findByApp(ApplicationModel application);
+    List<SubscriptionModel> findByAppCode(Long code);
 
     SubscriptionModel findByCode(long code);
 
-    List<SubscriptionModel> findActiveSubscription();
+    List<SubscriptionModel> findActiveSubscriptions();
 
-    List<SubscriptionModel> findInactiveSubscription();
+    List<SubscriptionModel> findInactiveSubscriptions();
 
     Long findLastSubscriptionCode();
 
