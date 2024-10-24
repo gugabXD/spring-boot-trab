@@ -17,20 +17,20 @@ public interface JpaSubscriptionRepositoryInterface extends JpaRepository<Subscr
     Subscription findByCode(long code);
     List<Subscription> findByCustomerCode(long code);
     List<Subscription> findByCustomer(Customer customer);    
-    List<SubscriptionModel> findByAppCode(Long code);
-    List<SubscriptionModel> findByApp(App application);
+    List<Subscription> findByAppCode(Long code);
+    List<Subscription> findByApp(App application);
 
 
     @Query("SELECT MAX(s.code) FROM Subscription s")
     Long findLastSubscriptionCode();
 
     @Query("SELECT s FROM Subscription s WHERE s.begin_contract_period < CURRENT_DATE AND s.end_contract_period > CURRENT_DATE")
-    List<SubscriptionModel> findActiveSubscriptions();
+    List<Subscription> findActiveSubscriptions();
 
     @Query("SELECT s FROM Subscription s WHERE s.begin_contract_period >= CURRENT_DATE OR s.end_contract_period <= CURRENT_DATE")
-    List<SubscriptionModel> findInactiveSubscriptions();
+    List<Subscription> findInactiveSubscriptions();
 
 
-    SubscriptionModel save(SubscriptionModel subscription);
+    Subscription save(Subscription subscription);
 
 }

@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.List;
 
 @Repository
-public class PaymentRepository implements PaymentRepositoryInterface{
+public class PaymentRepository implements PaymentRepositoryInterface {
 
     private JpaPaymentRepositoryInterface jpaPaymentRepositoryInterface;
 
@@ -29,13 +29,14 @@ public class PaymentRepository implements PaymentRepositoryInterface{
     }
 
     @Override
-    public List<PaymentModel> findBySubscription(SubscriptionModel subscription) {
-        return jpaPaymentRepositoryInterface.findBySubscription(Subscription.fromSubscriptionModel(subscription)).stream().map(Payment::toPaymentModel).toList();
+    public List<PaymentModel> findBySubscriptionCode(SubscriptionModel subscription) {
+        return jpaPaymentRepositoryInterface.findBySubscriptionCode(Subscription.fromSubscriptionModel(subscription))
+                .stream().map(Payment::toPaymentModel).toList();
     }
 
     @Override
-    public List<PaymentModel> findByPaymentDate(Date dataPagamento) {
-        return jpaPaymentRepositoryInterface.findByPaymentDate(dataPagamento).stream().map(Payment::toPaymentModel).toList();
+    public List<PaymentModel> findByDate(Date dataPagamento) {
+        return jpaPaymentRepositoryInterface.findByDate(dataPagamento).stream().map(Payment::toPaymentModel).toList();
     }
-    
+
 }

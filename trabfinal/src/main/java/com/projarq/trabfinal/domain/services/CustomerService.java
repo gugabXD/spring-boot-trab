@@ -1,22 +1,24 @@
 package com.projarq.trabfinal.domain.services;
 
-import org.hibernate.mapping.List;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.projarq.trabfinal.adapterInterface.repositories.repositoriesImplementation.CustomerRepository;
+import com.projarq.trabfinal.domain.entities.CustomerModel;
 
 @Service
 public class CustomerService {
 
-        private ClienteRepositoryImpl clienteRepositoryImpl;
+    private final CustomerRepository customerRepository;
 
     @Autowired
-    public CustomerService(ClienteRepositoryImpl clienteRepositoryImpl) {
-        this.clienteRepositoryImpl = clienteRepositoryImpl;
+    public CustomerService(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
     }
 
-    public List<ClienteModel> findAll() {
-        return clienteRepositoryImpl.findAll();
+    public List<CustomerModel> findAll() {
+        return customerRepository.findAll();
     }
 
-    
 }

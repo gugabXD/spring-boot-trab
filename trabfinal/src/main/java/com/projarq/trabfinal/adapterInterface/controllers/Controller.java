@@ -1,6 +1,14 @@
 package com.projarq.trabfinal.adapterInterface.controllers;
 
 import org.springframework.web.bind.annotation.RestController;
+
+import com.projarq.trabfinal.domain.services.ApplicationService;
+import com.projarq.trabfinal.domain.services.CustomerService;
+import com.projarq.trabfinal.domain.services.PaymentService;
+// import com.projarq.trabfinal.domain.services.SubscriptionService;
+import com.projarq.trabfinal.domain.services.UserService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +21,28 @@ import java.util.ArrayList;
 
 @RestController
 public class Controller {
+
+    private final ApplicationService applicationService;
+    private final PaymentService paymentService;
+    private final CustomerService customerService;
+    // private final SubscriptionService subscriptionService;
+    private final UserService userServices;
+
+    @Autowired
+    public Controller(
+            ApplicationService applicationService,
+            PaymentService paymentService,
+            CustomerService customerService,
+            // SubscriptionService subscriptionService,
+            UserService userServices) {
+
+        this.applicationService = applicationService;
+        this.paymentService = paymentService;
+        this.customerService = customerService;
+        // this.subscriptionService = subscriptionService;
+        this.userServices = userServices;
+    }
+
     @GetMapping("")
     @CrossOrigin(origins = "*")
     public String isAppRunning() {
@@ -22,7 +52,7 @@ public class Controller {
     @GetMapping("/servcad/clientes")
     @CrossOrigin(origins = "*")
     public String getAllClients() {
-        return "/servcad/clientes";
+        return customerService.findAll().toString();
     }
 
     @GetMapping("/servcad/aplicativos")

@@ -1,6 +1,5 @@
 package com.projarq.trabfinal.adapterInterface.repositories.repositoriesImplementation;
 
-
 import com.projarq.trabfinal.adapterInterface.repositories.entities.App;
 import com.projarq.trabfinal.adapterInterface.repositories.entities.Customer;
 import com.projarq.trabfinal.adapterInterface.repositories.entities.Subscription;
@@ -16,28 +15,32 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class SubscriptionRepository implements SubscriptionRepositoryInterface{
-    
+public class SubscriptionRepository implements SubscriptionRepositoryInterface {
+
     private JpaSubscriptionRepositoryInterface jpaSubscriptionRepositoryInterface;
 
     @Override
     public List<SubscriptionModel> findByApp(ApplicationModel application) {
-        return jpaSubscriptionRepositoryInterface.findByApp(App.fromApplicationModel(application)).stream().map(Subscription::toSubscriptionModel).toList();
+        return jpaSubscriptionRepositoryInterface.findByApp(App.fromApplicationModel(application)).stream()
+                .map(subscription -> Subscription.toSubscriptionModel(subscription)).toList();
     }
 
     @Override
     public List<SubscriptionModel> findByAppCode(Long code) {
-        return jpaSubscriptionRepositoryInterface.findByAppCode(code).stream().map(Subscription::toSubscriptionModel).toList();
+        return jpaSubscriptionRepositoryInterface.findByAppCode(code).stream().map(Subscription::toSubscriptionModel)
+                .toList();
     }
 
     @Override
     public List<SubscriptionModel> findActiveSubscriptions() {
-        return jpaSubscriptionRepositoryInterface.findActiveSubscriptions().stream().map(Subscription::toSubscriptionModel).toList();
+        return jpaSubscriptionRepositoryInterface.findActiveSubscriptions().stream()
+                .map(Subscription::toSubscriptionModel).toList();
     }
 
     @Override
     public List<SubscriptionModel> findInactiveSubscriptions() {
-        return jpaSubscriptionRepositoryInterface.findInactiveSubscriptions().stream().map(Subscription::toSubscriptionModel).toList();
+        return jpaSubscriptionRepositoryInterface.findInactiveSubscriptions().stream()
+                .map(Subscription::toSubscriptionModel).toList();
     }
 
     @Autowired
@@ -52,12 +55,14 @@ public class SubscriptionRepository implements SubscriptionRepositoryInterface{
 
     @Override
     public List<SubscriptionModel> findByCustomer(CustomerModel customer) {
-        return jpaSubscriptionRepositoryInterface.findByCustomer(Customer.fromCustomerModel(customer)).stream().map(Subscription::toSubscriptionModel).toList();
+        return jpaSubscriptionRepositoryInterface.findByCustomer(Customer.fromCustomerModel(customer)).stream()
+                .map(Subscription::toSubscriptionModel).toList();
     }
 
     @Override
     public List<SubscriptionModel> findByCustomerCode(long id) {
-        return jpaSubscriptionRepositoryInterface.findByCustomerCode(id).stream().map(Subscription::toSubscriptionModel).toList();
+        return jpaSubscriptionRepositoryInterface.findByCustomerCode(id).stream().map(Subscription::toSubscriptionModel)
+                .toList();
     }
 
     @Override
@@ -74,7 +79,8 @@ public class SubscriptionRepository implements SubscriptionRepositoryInterface{
 
     @Override
     public SubscriptionModel save(SubscriptionModel subscription) {
-        return Subscription.toSubscriptionModel(jpaSubscriptionRepositoryInterface.save(Subscription.fromSubscriptionModel(subscription)));
+        return Subscription.toSubscriptionModel(
+                jpaSubscriptionRepositoryInterface.save(Subscription.fromSubscriptionModel(subscription)));
     }
 
 }

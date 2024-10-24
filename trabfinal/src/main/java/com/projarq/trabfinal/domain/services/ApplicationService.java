@@ -18,12 +18,12 @@ public class ApplicationService {
         this.applicationRepository = applicationRepository;
     }
 
-    public ApplicationModel updateMonthlyCost(long code, double monthlyCost) {
+    public ApplicationModel updateMonth_Cost(long code, double month_Cost) {
 
         ApplicationModel application = this.applicationRepository.findByCode(code);
 
         if (application != null) {
-            application.setmonthCost(monthlyCost);
+            application.setmonthCost(month_Cost);
             return this.applicationRepository.save(application);
         }
         return null;

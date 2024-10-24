@@ -11,15 +11,15 @@ public class App {
     @Id
     private Long code;
     private String name;
-    private Double month_Cost;
+    private Double monthCost;
 
     protected App() {
     }
 
-    public App(Long code, String name, Double month_Cost) {
+    public App(Long code, String name, Double monthCost) {
         this.code = code;
         this.name = name;
-        this.month_Cost = month_Cost;
+        this.monthCost = monthCost;
     }
 
     public Long getCode() {
@@ -38,16 +38,16 @@ public class App {
         this.name = name;
     }
 
-    public Double getmonth_Cost() {
-        return month_Cost;
+    public Double getmonthCost() {
+        return monthCost;
     }
 
-    public void setmonth_Cost(Double month_Cost) {
-        this.month_Cost = month_Cost;
+    public void setmonthCost(Double monthCost) {
+        this.monthCost = monthCost;
     }
 
     public static ApplicationModel toApplicationModel(App app) {
-        return new ApplicationModel(app.getCode(), app.getName(), app.getmonth_Cost());
+        return new ApplicationModel(app.getCode(), app.getName(), app.getmonthCost());
     }
 
     public static App fromApplicationModel(ApplicationModel applicationModel) {

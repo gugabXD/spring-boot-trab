@@ -8,6 +8,6 @@ public interface ApplicationRepositoryInterface {
     List<ApplicationModel> findAll();
     ApplicationModel findByCode(long id);
     List<ApplicationModel> findByName(String nome);
-    List<ApplicationModel> findByMonthlyCost(double custoMensal);
+    List<ApplicationModel> findByMonthCost(double custoMensal);
     ApplicationModel save(ApplicationModel aplicativo);
 }

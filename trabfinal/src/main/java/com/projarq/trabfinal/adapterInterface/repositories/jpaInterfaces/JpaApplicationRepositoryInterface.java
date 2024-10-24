@@ -15,7 +15,7 @@ public interface JpaApplicationRepositoryInterface extends JpaRepository<App, Lo
 
     List<App> findByName(String nome);
 
-    App findByMonthlyCost(double monthlyCost);
+    App findByMonthCost(double month_Cost);
 
-    ApplicationModel save(ApplicationModel aplicativo);
+    App save(App aplicativo);
 }
