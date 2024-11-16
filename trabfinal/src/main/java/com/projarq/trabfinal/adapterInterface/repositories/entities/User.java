@@ -2,14 +2,16 @@ package com.projarq.trabfinal.adapterInterface.repositories.entities;
 
 import com.projarq.trabfinal.domain.entities.UserModel;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "users")
+// @Table(name = "users")
 public class User {
     @Id
+    @Column(name = "user_name")
     private String user_name;
     private String password;
 
@@ -21,7 +23,7 @@ public class User {
         this.password = password;
     }
 
-    public String getuser_name() {
+    public String getUser_name() {
         return user_name;
     }
 
@@ -29,7 +31,7 @@ public class User {
         return password;
     }
 
-    public void setuser_name(String user_name) {
+    public void setUser_name(String user_name) {
         this.user_name = user_name;
     }
 
@@ -38,7 +40,7 @@ public class User {
     }
 
     public static UserModel toUserModel(User user){
-        return new UserModel(user.getuser_name(), user.getPassword());
+        return new UserModel(user.getUser_name(), user.getPassword());
     }
 
     public static User fromUserModel(UserModel userModel){

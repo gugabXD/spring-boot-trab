@@ -17,8 +17,8 @@ public interface JpaSubscriptionRepositoryInterface extends JpaRepository<Subscr
     Subscription findByCode(long code);
     List<Subscription> findByCustomerCode(long code);
     List<Subscription> findByCustomer(Customer customer);    
-    List<Subscription> findByAppCode(Long code);
-    List<Subscription> findByApp(App application);
+    List<Subscription> findByApplication_Code(Long code);
+    List<Subscription> findByApplication(App application);
 
 
     @Query("SELECT MAX(s.code) FROM Subscription s")

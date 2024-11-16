@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface JpaUserRepositoryInterface extends JpaRepository<User, String> {
     
-    List<User> findByName(String name);
+    List<User> findByUser_name(String userName);
 
 }

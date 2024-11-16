@@ -21,13 +21,13 @@ public class SubscriptionRepository implements SubscriptionRepositoryInterface {
 
     @Override
     public List<SubscriptionModel> findByApp(ApplicationModel application) {
-        return jpaSubscriptionRepositoryInterface.findByApp(App.fromApplicationModel(application)).stream()
+        return jpaSubscriptionRepositoryInterface.findByApplication(App.fromApplicationModel(application)).stream()
                 .map(subscription -> Subscription.toSubscriptionModel(subscription)).toList();
     }
 
     @Override
     public List<SubscriptionModel> findByAppCode(Long code) {
-        return jpaSubscriptionRepositoryInterface.findByAppCode(code).stream().map(Subscription::toSubscriptionModel)
+        return jpaSubscriptionRepositoryInterface.findByApplication_Code(code).stream().map(Subscription::toSubscriptionModel)
                 .toList();
     }
 
