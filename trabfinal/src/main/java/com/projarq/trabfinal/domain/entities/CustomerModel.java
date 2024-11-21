@@ -24,4 +24,13 @@ public class CustomerModel {
         return email;
     }
 
+    @Override
+    public String toString(){
+        return "CustomerModel{" +
+                "name='" + name + '\'' +
+                ", code=" + code +
+                ", email='" + email + '\'' +
+                '}';
+    }
+
 }

@@ -35,5 +35,14 @@ public class ApplicationModel {
     public void setmonthCost(Double monthCost) {
         this.monthCost = monthCost;
     }
+
+    @Override
+    public String toString(){
+        return "ApplicationModel{" +
+                "name='" + name + '\'' +
+                ", code=" + code +
+                ", monthCost='" + monthCost + '\'' +
+                '}';
+    }
     
 }

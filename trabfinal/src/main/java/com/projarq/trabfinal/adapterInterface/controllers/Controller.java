@@ -57,7 +57,7 @@ public class Controller {
 
     @GetMapping("/servcad/aplicativos")
     public String getAllApps() {
-        return "/servcad/aplicativos";
+        return applicationService.findAll().toString();
     }
 
     @PostMapping("/servcad/assinaturas")
