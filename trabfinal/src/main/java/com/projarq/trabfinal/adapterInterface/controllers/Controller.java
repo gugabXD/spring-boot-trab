@@ -69,9 +69,9 @@ public class Controller {
         return subscriptionService.createSubscription(customerCode, appCode).toString();
     }
 
-    @PostMapping("/servcad/aplicativos/atualizacusto/{idAplicativo}")
-    public String updateAppCost(@PathVariable String idAplicativo, @RequestBody Map<String, Double> custo) {
-        return "Aplicativo atualizado com sucesso!";
+    @PostMapping("/servcad/aplicativos/atualizacusto/{idApp}")
+    public String updateAppCost(@PathVariable long idApp, @RequestBody Map<String, Double> cost) {
+        return applicationService.updateMonthlyCost(idApp, cost.get("cost")).toString();
     }
 
     @GetMapping("/servcad/assinaturas/{tipo}")

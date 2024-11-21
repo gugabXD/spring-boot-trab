@@ -32,7 +32,7 @@ public class ApplicationModel {
         return monthCost;
     }
 
-    public void setmonthCost(Double monthCost) {
+    public void setMonthCost(Double monthCost) {
         this.monthCost = monthCost;
     }
 
