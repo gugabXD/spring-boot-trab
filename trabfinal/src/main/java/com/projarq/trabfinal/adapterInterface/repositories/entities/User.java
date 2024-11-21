@@ -8,31 +8,31 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-// @Table(name = "users")
+@Table(name = "\"user\"")
 public class User {
     @Id
-    @Column(name = "user_name")
-    private String user_name;
+    @Column(name = "userName")
+    private String userName;
     private String password;
 
     protected User() {
     }
 
-    public User(String user_name, String password) {
-        this.user_name = user_name;
+    public User(String userName, String password) {
+        this.userName = userName;
         this.password = password;
     }
 
-    public String getUser_name() {
-        return user_name;
+    public String getUser() {
+        return userName;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
+    public void setUser(String userName) {
+        this.userName = userName;
     }
 
     public void setPassword(String password) {
@@ -40,7 +40,7 @@ public class User {
     }
 
     public static UserModel toUserModel(User user){
-        return new UserModel(user.getUser_name(), user.getPassword());
+        return new UserModel(user.getUser(), user.getPassword());
     }
 
     public static User fromUserModel(UserModel userModel){
