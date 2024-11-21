@@ -5,8 +5,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.projarq.trabfinal.domain.services.ApplicationService;
 import com.projarq.trabfinal.domain.services.CustomerService;
 import com.projarq.trabfinal.domain.services.PaymentService;
-// import com.projarq.trabfinal.domain.services.SubscriptionService;
+import com.projarq.trabfinal.domain.services.SubscriptionService;
 import com.projarq.trabfinal.domain.services.UserService;
+import com.projarq.trabfinal.aplication.dtos.SubscriptionDTO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,21 +26,22 @@ public class Controller {
     private final ApplicationService applicationService;
     private final PaymentService paymentService;
     private final CustomerService customerService;
-    // private final SubscriptionService subscriptionService;
+    private final SubscriptionService subscriptionService;
     private final UserService userServices;
 
+    
     @Autowired
     public Controller(
             ApplicationService applicationService,
             PaymentService paymentService,
             CustomerService customerService,
-            // SubscriptionService subscriptionService,
+            SubscriptionService subscriptionService,
             UserService userServices) {
 
         this.applicationService = applicationService;
         this.paymentService = paymentService;
         this.customerService = customerService;
-        // this.subscriptionService = subscriptionService;
+        this.subscriptionService = subscriptionService;
         this.userServices = userServices;
     }
 
@@ -61,8 +63,10 @@ public class Controller {
     }
 
     @PostMapping("/servcad/assinaturas")
-    public String createSubscription(@RequestBody String body) {
-        return body;
+    public String createSubscription(@RequestBody SubscriptionDTO subscription) {
+        long customerCode = subscription.getCustomerCode();
+        long appCode = subscription.getAppCode();
+        return subscriptionService.createSubscription(customerCode, appCode).toString();
     }
 
     @PostMapping("/servcad/aplicativos/atualizacusto/{idAplicativo}")

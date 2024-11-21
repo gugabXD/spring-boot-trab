@@ -12,6 +12,7 @@ import com.projarq.trabfinal.adapterInterface.repositories.repositoriesImplement
 import com.projarq.trabfinal.adapterInterface.repositories.repositoriesImplementation.SubscriptionRepository;
 import com.projarq.trabfinal.domain.entities.ApplicationModel;
 import com.projarq.trabfinal.domain.entities.CustomerModel;
+import com.projarq.trabfinal.domain.entities.SubscriptionModel;
 
 import java.util.Date;
 
@@ -28,107 +29,34 @@ public class SubscriptionService {
 
     @Autowired
     public SubscriptionService(JpaSubscriptionRepositoryInterface jpaSubscriptionRepositoryInterface,
-            SubscriptionRepository subscriptionRepository, ApplicationRepository applicationRepository
-            // customerRepository customerRepository, RabbitTemplate rabbitTemplate,
-            // FanoutExchange fanout
+            SubscriptionRepository subscriptionRepository, ApplicationRepository applicationRepository, CustomerRepository customerRepository
             ) {
 
         this.jpaSubscriptionRepositoryInterface = jpaSubscriptionRepositoryInterface;
-
         this.subscriptionRepository = subscriptionRepository;
         this.applicationRepository = applicationRepository;
         this.customerRepository = customerRepository;
-    //     this.rabbitTemplate = rabbitTemplate;
-    //     this.fanout = fanout;
-    // }
+     }
 
-    // public List<CustomerModel> getFromAppId(long appId) {
-    //     return this.subscriptionRepository.findByAplicativoId(appId);
-    // }
+   
 
-    // public List<CustomerModel> getFromClienteId(long clienteId) {
-    //     return this.subscriptionRepository.findByClienteId(clienteId);
-    // }
+    public SubscriptionModel createSubscription(long customerCode, long appCode) {
+        CustomerModel customer = customerRepository.findById(customerCode);
+        if (customer == null) {
+                     throw new IllegalArgumentException("Customer not found with ID: " +
+                             customerCode);
+                 }
 
-    // public List<CustomerModel> getFromType(AssinaturaEnum type) {
-    //     if (type == AssinaturaEnum.TODAS) {
-    //         return this.subscriptionRepository.findAll();
-    //     } else if (type == AssinaturaEnum.ATIVA) {
-    //         return this.subscriptionRepository.findActiveAssinaturas();
-    //     } else if (type == AssinaturaEnum.CANCELADA) {
-    //         return this.subscriptionRepository.findInactiveAssinaturas();
-    //     }
-    //     return null;
-    // }
+        ApplicationModel app = applicationRepository.findByCode(appCode);
+        if (app == null) {
+                     throw new IllegalArgumentException("Application not found with ID: " +
+                             appCode);
+                 }
+        
+        long id = subscriptionRepository.findLastSubscriptionCode() != null ? 
+                subscriptionRepository.findLastSubscriptionCode() + 1 : 1;
 
-    // public CustomerModel criaNovaAssinatura(long codCliente, long codAplicativo) {
-    //     CustomerModel cliente = customerRepository.findById(codCliente);
-    //     if (cliente == null) {
-    //         throw new IllegalArgumentException("Cliente not found with ID: " +
-    //                 codCliente);
-    //     }
-    //     return new CustomerModel();
-    // }
-        // ApplicationModel aplicativo = applicationRepository.findById(codAplicativo);
-
-        // if (aplicativo == null) {
-        // throw new IllegalArgumentException("Aplicativo not found with ID: " +
-        // codAplicativo);
-        // }
-
-        // long id = subscriptionRepository.findLastAssinaturaId() + 1;
-        // Date now = new Date();
-
-        // Calendar calendar = Calendar.getInstance();
-
-        // calendar.setTime(now);
-
-        // calendar.add(Calendar.MONTH, 1);
-
-        // Date nowInAMonth = calendar.getTime();
-        // CustomerModel nova = new CustomerModel(id, aplicativo, cliente, now,
-        // nowInAMonth);
-
-        // return subscriptionRepository.save(nova);
-    }
-
-    // public CustomerModel getFromAssinaturaId(long assinaturaId) {
-    // return this.subscriptionRepository.findById(assinaturaId);
-    // }
-
-    // public void saveAssinatura(CustomerModel assinatura) {
-    // AssinaturaDTO assinaturaDto = new AssinaturaDTO(assinatura.getFimVigencia(),
-    // assinatura.getId());
-    // rabbitTemplate.convertAndSend(fanout.getName(), "", assinaturaDto);
-    // this.subscriptionRepository.save(assinatura);
-    // }
-
-    public class AssinaturaDTO {
-        private Date expirationDate;
-        private Long idAssinatura;
-
-        AssinaturaDTO(Date expirationDate, Long idAssinatura) {
-            this.expirationDate = expirationDate;
-            this.idAssinatura = idAssinatura;
-        }
-
-        public Date getExpirationDate() {
-            return expirationDate;
-        }
-
-        public Long getIdAssinatura() {
-            return idAssinatura;
+        return new SubscriptionModel(id, app, customer, new Date(), new Date());
         }
     }
 
-    public Boolean inTime(long code) {
-        Subscription subscription = this.jpaSubscriptionRepositoryInterface.findByCode(code);
-
-        if (subscription != null) {
-            return subscription.getBegin_contract_period().before(new Date())
-                    && subscription.getEnd_contract_period().after(new Date());
-        }
-        return null;
-    }
-
-}

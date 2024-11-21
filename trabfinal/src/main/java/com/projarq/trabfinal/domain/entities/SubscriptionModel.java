@@ -37,4 +37,15 @@ public class SubscriptionModel {
     public Date getEndContractPeriod() {
         return endContractPeriod;
     }
+
+    @Override
+    public String toString(){
+        return "SubscriptionModel{" +
+                "code=" + code +
+                ", application=" + application +
+                ", customer=" + customer +
+                ", beginContractPeriod=" + beginContractPeriod +
+                ", endContractPeriod=" + endContractPeriod +
+                '}';
+    }
 }

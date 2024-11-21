@@ -22,7 +22,7 @@ public class UserRepository implements UserRepositoryInterface {
 
     @Override
     public List<UserModel> findByName(String name) {
-        return jpaUserRepositoryInterface.findByUser_name(name).stream().map(User::toUserModel).toList();
+        return jpaUserRepositoryInterface.findByUserName(name).stream().map(User::toUserModel).toList();
     }
 
 }
