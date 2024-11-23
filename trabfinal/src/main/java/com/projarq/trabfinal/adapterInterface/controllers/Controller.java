@@ -7,7 +7,8 @@ import com.projarq.trabfinal.domain.services.CustomerService;
 import com.projarq.trabfinal.domain.services.PaymentService;
 import com.projarq.trabfinal.domain.services.SubscriptionService;
 import com.projarq.trabfinal.domain.services.UserService;
-import com.projarq.trabfinal.aplication.dtos.SubscriptionDTO;
+import com.projarq.trabfinal.domain.entities.SubscriptionModel;
+// import com.projarq.trabfinal.application.dtos.SubscriptionDTO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -63,9 +64,9 @@ public class Controller {
     }
 
     @PostMapping("/servcad/assinaturas")
-    public String createSubscription(@RequestBody SubscriptionDTO subscription) {
-        long customerCode = subscription.getCustomerCode();
-        long appCode = subscription.getAppCode();
+    public String createSubscription(@RequestBody SubscriptionModel subscription) {
+        long customerCode = subscription.getCustomer().getCode();
+        long appCode = subscription.getApplication().getCode();
         return subscriptionService.createSubscription(customerCode, appCode).toString();
     }
 
