@@ -49,7 +49,7 @@ public class Controller {
     @GetMapping("")
     @CrossOrigin(origins = "*")
     public String isAppRunning() {
-        return "teste";
+        return "Bem-vindo!";
     }
 
     @GetMapping("/servcad/clientes")
@@ -64,9 +64,9 @@ public class Controller {
     }
 
     @PostMapping("/servcad/assinaturas")
-    public String createSubscription(@RequestBody SubscriptionModel subscription) {
-        long customerCode = subscription.getCustomer().getCode();
-        long appCode = subscription.getApplication().getCode();
+    public String createSubscription(@RequestBody SubscriptionRequest subscription) {
+        long customerCode = subscription.getCustomerCode();
+        long appCode = subscription.getApplicationCode();
         return subscriptionService.createSubscription(customerCode, appCode).toString();
     }
 
@@ -76,19 +76,18 @@ public class Controller {
     }
 
     @GetMapping("/servcad/assinaturas/{tipo}")
-    public List<Map<String, Object>> getSubscriptionsByType(@PathVariable String tipo) {
-        return new ArrayList<>();
+    public List<SubscriptionModel> getSubscriptionsByType(@PathVariable String type) {
+        return subscriptionService.findByType(type);
     }
 
     @GetMapping("/servcad/asscli/{codcli}")
-    public List<Map<String, Object>> getClientSubscriptions(@PathVariable String codcli) {
-        return new ArrayList<>();
+    public List<SubscriptionModel> getClientSubscriptions(@PathVariable long codcli) {
+        return this.subscriptionService.getCustomerCode(codcli);
     }
 
     @GetMapping("/servcad/assapp/{codapp}")
-    public List<Map<String, Object>> getAppSubscriptions(@PathVariable String codapp) {
-
-        return new ArrayList<>();
+    public List<SubscriptionModel> getAppSubscriptions(@PathVariable long codapp) {
+        return this.subscriptionService.getAppCode(codapp);
     }
 
     @PostMapping("/registrarpagamento")
@@ -97,7 +96,25 @@ public class Controller {
     }
 
     @GetMapping("/assinvalida/{codass}")
-    public boolean isSubscriptionInvalid(@PathVariable String codass) {
-        return false;
+    public boolean isSubscriptionInvalid(@PathVariable long codass) {
+        return this.subscriptionService.isActive(codass);
+    }
+
+    public static class SubscriptionRequest {
+        private long customerCode;
+        private long applicationCode;
+
+        public SubscriptionRequest(long customerCode, long applicationCode) {
+            this.customerCode = customerCode;
+            this.applicationCode = applicationCode;
+        }
+
+        public long getCustomerCode() {
+            return customerCode;
+        }
+
+        public long getApplicationCode() {
+            return applicationCode;
+        }
     }
 }

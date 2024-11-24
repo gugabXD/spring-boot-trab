@@ -1,6 +1,5 @@
 package com.projarq.trabfinal.domain.services;
 
-import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +14,8 @@ import com.projarq.trabfinal.domain.entities.CustomerModel;
 import com.projarq.trabfinal.domain.entities.SubscriptionModel;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Calendar;
 
 @Service
 public class SubscriptionService {
@@ -24,8 +25,6 @@ public class SubscriptionService {
     private SubscriptionRepository subscriptionRepository;
     private ApplicationRepository applicationRepository;
     private CustomerRepository customerRepository;
-    // private RabbitTemplate rabbitTemplate;
-    // private FanoutExchange fanout;
 
     @Autowired
     public SubscriptionService(JpaSubscriptionRepositoryInterface jpaSubscriptionRepositoryInterface,
@@ -58,5 +57,33 @@ public class SubscriptionService {
 
         return new SubscriptionModel(id, app, customer, new Date(), new Date());
         }
+
+        public List<SubscriptionModel> getAppCode(long appId) {
+                return this.subscriptionRepository.findByAppCode(appId);
+        }
+
+        public List<SubscriptionModel> getCustomerCode(long customerId) {
+                return this.subscriptionRepository.findByCustomerCode(customerId);
+        }
+
+        public List<SubscriptionModel> findByType(String type) {
+                if(type.toUpperCase().equals("TODAS")) {
+                        return this.subscriptionRepository.findAll();
+                }
+                if(type.toUpperCase().equals("ATIVA")) {
+                        return this.subscriptionRepository.findActiveSubscriptions();
+                } 
+                if(type.toUpperCase().equals("CANCELADA")){
+                        return this.subscriptionRepository.findInactiveSubscriptions();
+                }
+                return null;
+        }
+
+        public boolean isActive(long code) {
+                SubscriptionModel subscription = this.subscriptionRepository.findByCode(code);
+                Date today = new Date();
+                return subscription.getBeginContractPeriod().before(today) && subscription.getEndContractPeriod().after(today);
+        }
+
     }
 
