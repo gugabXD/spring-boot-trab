@@ -17,4 +17,15 @@ public class AssCacheController{
     public String WelcomeMsg(){
         return ("Hello World");
     }
+
+    @GetMapping("/subscription/{subscriptionId}")
+    public Subscription getSubscription(@PathVariable Long subscriptionId){
+        Subscription subscription = subscriptionRepository.findByCode(subscriptionId);
+        return subscription;
+    }
+    
+    @PostMapping("/renew/subscription")
+    public boolean renewSubscription(@valid @RequestBody Subscription subscription){
+        return subscription;
+    }
 }
