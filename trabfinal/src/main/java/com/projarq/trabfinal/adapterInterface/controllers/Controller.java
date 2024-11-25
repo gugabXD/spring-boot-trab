@@ -76,22 +76,22 @@ public class Controller {
         return subscriptionService.createSubscription(customerCode, appCode).toString();
     }
 
-    @PostMapping("/servcad/aplicativos/atualizacusto/{idApp}")
+    @PostMapping("/servcad/aplicativos/atualizacusto/{cost}")
     public ApplicationModel updateAppCost(@PathVariable long idApp, @RequestBody double cost) {
         return applicationService.updateMonthlyCost(idApp, cost);
     }
 
-    @GetMapping("/servcad/assinaturas/{tipo}")
+    @GetMapping("/servcad/assinaturas/{type}")
     public List<SubscriptionModel> getSubscriptionsByType(@PathVariable String type) {
         return subscriptionService.findByType(type);
     }
 
-    @GetMapping("/servcad/asscli/{codcli}")
+    @GetMapping("/servcad/asscli/{customerCode}")
     public List<SubscriptionModel> getClientSubscriptions(@PathVariable long customerCode) {
         return this.subscriptionService.getCustomerCode(customerCode);
     }
 
-    @GetMapping("/servcad/assapp/{codapp}")
+    @GetMapping("/servcad/assapp/{appCode}")
     public List<SubscriptionModel> getAppSubscriptions(@PathVariable long appCode) {
         return this.subscriptionService.getAppCode(appCode);
     }
