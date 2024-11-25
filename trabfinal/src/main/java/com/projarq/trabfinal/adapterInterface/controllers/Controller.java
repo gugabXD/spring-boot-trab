@@ -11,6 +11,7 @@ import com.projarq.trabfinal.domain.entities.ApplicationModel;
 import com.projarq.trabfinal.domain.entities.SubscriptionModel;
 import com.projarq.trabfinal.domain.entities.PaymentModel;
 import com.projarq.trabfinal.application.dtos.SubscriptionDTO;
+import com.projarq.trabfinal.application.dtos.PaymentDTO;
 
 import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,7 +99,7 @@ public class Controller {
     }
 
     @PostMapping("/registrarpagamento")
-    public ResponseEntity<Response> registerPayment(@RequestBody PaymentRequest paymentData) {
+    public ResponseEntity<Response> registerPayment(@RequestBody PaymentDTO paymentData) {
         Response response = new Response();
 
         String day = paymentData.getDay();
@@ -141,33 +142,6 @@ public class Controller {
         return this.subscriptionService.isActive(codass);
     }
 
-    public static class PaymentRequest {
-        private String day;
-        private String month;
-        private String year;
-        private Double paidValue;
-        private Long subsCode;
-
-        public String getDay() {
-            return day;
-        }
-
-        public String getMonth() {
-            return month;
-        }
-
-        public String getYear() {
-            return year;
-        }
-
-        public Double getPaidValue() {
-            return paidValue;
-        }
-
-        public Long getSubsCode() {
-            return subsCode;
-        }
-    }
     public static class Response {
         public String status;
         public Date date;

@@ -2,27 +2,38 @@ package com.projarq.trabfinal.application.dtos;
 
 
 public class PaymentDTO {
-    private Long id;
-    private double amount;
-    private String status;
+    private String day;
+    private String month;
+    private String year;
+    private Double paidValue;
+    private Long subsCode;
 
-    public PaymentDTO(Long id, double amount, String status) {
-        this.id = id;
-        this.amount = amount;
-        this.status = status;
+    public PaymentDTO(String day, String month, String year, Double paidValue, Long subsCode) {
+        this.day = day;
+        this.month = month;
+        this.year = year;
+        this.paidValue = paidValue;
+        this.subsCode = subsCode;
     }
 
-    public Long getId() {
-        return id;
+    public String getDay() {
+        return day;
     }
 
-    public double getAmount() {
-        return amount;
+    public String getMonth() {
+        return month;
     }
 
-    public String getStatus() {
-        return status;
+    public String getYear() {
+        return year;
     }
 
+    public Double getPaidValue() {
+        return paidValue;
+    }
+
+    public Long getSubsCode() {
+        return subsCode;
+    }
 
 }
