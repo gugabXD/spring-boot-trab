@@ -76,22 +76,22 @@ public class Controller {
         return subscriptionService.createSubscription(customerCode, appCode).toString();
     }
 
-    @PostMapping("/servcad/aplicativos/atualizacusto/{idApp}")
+    @PostMapping("/servcad/aplicativos/atualizacusto/{cost}")
     public ApplicationModel updateAppCost(@PathVariable long idApp, @RequestBody double cost) {
         return applicationService.updateMonthlyCost(idApp, cost);
     }
 
-    @GetMapping("/servcad/assinaturas/{tipo}")
+    @GetMapping("/servcad/assinaturas/{type}")
     public List<SubscriptionModel> getSubscriptionsByType(@PathVariable String type) {
         return subscriptionService.findByType(type);
     }
 
-    @GetMapping("/servcad/asscli/{codcli}")
+    @GetMapping("/servcad/asscli/{customerCode}")
     public List<SubscriptionModel> getClientSubscriptions(@PathVariable long customerCode) {
         return this.subscriptionService.getCustomerCode(customerCode);
     }
 
-    @GetMapping("/servcad/assapp/{codapp}")
+    @GetMapping("/servcad/assapp/{appCode}")
     public List<SubscriptionModel> getAppSubscriptions(@PathVariable long appCode) {
         return this.subscriptionService.getAppCode(appCode);
     }
@@ -112,7 +112,8 @@ public class Controller {
         calendar.set(Integer.parseInt(year), Integer.parseInt(month) - 1, Integer.parseInt(day));
         Date date = calendar.getTime();
         String sale = "sale";
-            if (paidValue >= monthlyCost) {
+
+        if (paidValue >= monthlyCost) {
             PaymentModel payment = new PaymentModel(subsCode, subscription, paidValue, date, sale);
             response.status = "PAGAMENTO_OK";
             response.reversedValue = 0.0;
@@ -126,9 +127,7 @@ public class Controller {
             subscriptionService.saveSubscription(subscription);
             paymentService.paymentRegister(payment);
         } 
-        
-        else 
-        {
+        else {
             response.status = "VALOR_INCORRETO";
             response.reversedValue = monthlyCost - paidValue;
             response.date = date;

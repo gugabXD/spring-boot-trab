@@ -76,10 +76,10 @@ public class SubscriptionService {
                 if(type.toUpperCase().equals("TODAS")) {
                         return this.subscriptionRepository.findAll();
                 }
-                if(type.toUpperCase().equals("ATIVA")) {
+                if(type.toUpperCase().equals("ATIVAS")) {
                         return this.subscriptionRepository.findActiveSubscriptions();
                 } 
-                if(type.toUpperCase().equals("CANCELADA")){
+                if(type.toUpperCase().equals("CANCELADAS")){
                         return this.subscriptionRepository.findInactiveSubscriptions();
                 }
                 return null;
