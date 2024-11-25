@@ -16,13 +16,10 @@ public class Assinatura {
 
     private Long code;
 
-    @NotNull(message = "Application name cannot be null")
-    @Size(min = 1, max = 50, message = "Application code must be between 1 and 50 characters")
-    private String application;
-
-    @NotNull(message = "Customer name cannot be null")
-    @Size(min = 1, max = 50, message = "Customer code must be between 1 and 50 characters")
-    private String customer;
+    @NotNull(message = "ApplicationId cannot be null")
+    private Long application;
+    @NotNull(message = "CustomerId name cannot be null")
+    private Long customer;
     @NotNull(message = "Assinatura date cannot be null")
     private LocalDate begin_contract_period;
     @NotNull(message = "End contract period cannot be null")
@@ -32,7 +29,7 @@ public class Assinatura {
 
     }
 
-    public Assinatura(Long code, String application, String customer, LocalDate begin_contract_period, LocalDate end_contract_period) {
+    public Assinatura(Long code, Long application, Long customer, LocalDate begin_contract_period, LocalDate end_contract_period) {
         this.code = code;
         this.application = application;
         this.customer = customer;
@@ -48,19 +45,19 @@ public class Assinatura {
         this.code = code;
     }
 
-    public String getApplication() {
+    public Long getApplication() {
         return application;
     }
 
-    public void setApplication(String application) {
+    public void setApplication(Long application) {
         this.application = application;
     }
 
-    public String getCustomer() {
+    public Long getCustomer() {
         return customer;
     }
 
-    public void setCustomer(String customer) {
+    public void setCustomer(Long customer) {
         this.customer = customer;
     }
 
