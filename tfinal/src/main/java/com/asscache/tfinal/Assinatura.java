@@ -1,4 +1,4 @@
-package main.java.com.asscache.tfinal;
+package com.asscache.tfinal;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -12,6 +12,8 @@ import java.time.LocalDate;
 public class Assinatura {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long code;
 
     @NotNull(message = "Application name cannot be null")

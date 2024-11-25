@@ -1,4 +1,4 @@
-package main.java.com.asscache.tfinal;
+package com.asscache.tfinal;
 
 import org.springframework.data.repository.CrudRepository;
 
