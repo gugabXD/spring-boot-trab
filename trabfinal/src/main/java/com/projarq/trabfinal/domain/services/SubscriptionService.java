@@ -12,6 +12,7 @@ import com.projarq.trabfinal.adapterInterface.repositories.repositoriesImplement
 import com.projarq.trabfinal.domain.entities.ApplicationModel;
 import com.projarq.trabfinal.domain.entities.CustomerModel;
 import com.projarq.trabfinal.domain.entities.SubscriptionModel;
+// import com.projarq.trabfinal.aplication.dtos.SubscriptionDTO;
 
 import java.util.Date;
 import java.util.List;
@@ -66,6 +67,11 @@ public class SubscriptionService {
                 return this.subscriptionRepository.findByCustomerCode(customerId);
         }
 
+        public void saveSubscription(SubscriptionModel subscription){
+                SubscriptionModel newSubscription = new SubscriptionModel(subscription.getCode(), subscription.getApplication(), subscription.getCustomer(), subscription.getBeginContractPeriod(), subscription.getEndContractPeriod());
+                this.subscriptionRepository.save(newSubscription);
+        }
+
         public List<SubscriptionModel> findByType(String type) {
                 if(type.toUpperCase().equals("TODAS")) {
                         return this.subscriptionRepository.findAll();
@@ -84,6 +90,10 @@ public class SubscriptionService {
                 Date today = new Date();
                 return subscription.getBeginContractPeriod().before(today) && subscription.getEndContractPeriod().after(today);
         }
+
+        public SubscriptionModel getSubscriptionCode(long subscriptionCode) {
+                return this.subscriptionRepository.findByCode(subscriptionCode);
+            }
 
     }
 

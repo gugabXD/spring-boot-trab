@@ -38,6 +38,10 @@ public class SubscriptionModel {
         return endContractPeriod;
     }
 
+    public void setEndContractPeriod(Date endContractPeriod) {
+        this.endContractPeriod = endContractPeriod;
+    }
+
     @Override
     public String toString(){
         return "SubscriptionModel{" +
