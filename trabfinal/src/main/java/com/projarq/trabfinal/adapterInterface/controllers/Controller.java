@@ -112,7 +112,8 @@ public class Controller {
         calendar.set(Integer.parseInt(year), Integer.parseInt(month) - 1, Integer.parseInt(day));
         Date date = calendar.getTime();
         String sale = "sale";
-            if (paidValue >= monthlyCost) {
+
+        if (paidValue >= monthlyCost) {
             PaymentModel payment = new PaymentModel(subsCode, subscription, paidValue, date, sale);
             response.status = "PAGAMENTO_OK";
             response.reversedValue = 0.0;
@@ -126,9 +127,7 @@ public class Controller {
             subscriptionService.saveSubscription(subscription);
             paymentService.paymentRegister(payment);
         } 
-        
-        else 
-        {
+        else {
             response.status = "VALOR_INCORRETO";
             response.reversedValue = monthlyCost - paidValue;
             response.date = date;
