@@ -13,4 +13,8 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 public class AssCacheController{
     
+    @GetMapping("")
+    public String WelcomeMsg(){
+        return ("Hello World");
+    }
 }
