@@ -93,8 +93,7 @@ public class SubscriptionService {
 
         public boolean isActive(long code) {
                 SubscriptionModel subscription = this.subscriptionRepository.findByCode(code);
-                Date today = new Date();
-                return subscription.getBeginContractPeriod().before(today) && subscription.getEndContractPeriod().after(today);
+                return subscription.isActive();
         }
 
         public SubscriptionModel getSubscriptionCode(long subscriptionCode) {
