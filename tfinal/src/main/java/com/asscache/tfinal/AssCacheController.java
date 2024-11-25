@@ -1,17 +1,21 @@
 package com.asscache.tfinal;
 
-import java.math.BigDecimal;
-import java.util.HashMap;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
+
+import jakarta.validation.Valid;
 
 @RestController
 public class AssCacheController{
+
+    private final AssinaturaRepository assinaturaRepository;
+
+    @Autowired
+    public AssCacheController(AssinaturaRepository assinaturaRepository) {
+        this.assinaturaRepository = assinaturaRepository;
+    }
     
     @GetMapping("")
     public String WelcomeMsg(){
@@ -19,13 +23,13 @@ public class AssCacheController{
     }
 
     @GetMapping("/subscription/{subscriptionId}")
-    public Subscription getSubscription(@PathVariable Long subscriptionId){
-        Subscription subscription = subscriptionRepository.findByCode(subscriptionId);
-        return subscription;
+    public Assinatura getSubscription(@PathVariable Long assinaturaId){
+        Assinatura assinatura = assinaturaRepository.findByCode(assinaturaId);
+        return assinatura;
     }
     
     @PostMapping("/renew/subscription")
-    public boolean renewSubscription(@valid @RequestBody Subscription subscription){
-        return subscription;
+    public boolean renewSubscription(@Valid @RequestBody Assinatura assinatura){
+        return assinatura;
     }
 }

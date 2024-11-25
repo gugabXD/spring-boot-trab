@@ -1,19 +1,15 @@
 package main.java.com.asscache.tfinal;
 
-import main.java.com.asscache.tfinal.domain.entities.SubscriptionModel;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Table;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
-@Table(name = "subscriptions")
-public class Subscription {
+public class Assinatura {
 
     @Id
     private Long code;
@@ -25,15 +21,16 @@ public class Subscription {
     @NotNull(message = "Customer name cannot be null")
     @Size(min = 1, max = 50, message = "Customer code must be between 1 and 50 characters")
     private String customer;
-    @NotNull(message = "Subscription date cannot be null")
-    private Date begin_contract_period;
+    @NotNull(message = "Assinatura date cannot be null")
+    private LocalDate begin_contract_period;
     @NotNull(message = "End contract period cannot be null")
-    private Date end_contract_period;
+    private LocalDate end_contract_period;
 
-    protected Subscription() {
+    public Assinatura(){
+
     }
 
-    public Subscription(Long code, String application, String customer, Date begin_contract_period, Date end_contract_period) {
+    public Assinatura(Long code, String application, String customer, LocalDate begin_contract_period, LocalDate end_contract_period) {
         this.code = code;
         this.application = application;
         this.customer = customer;
@@ -65,19 +62,19 @@ public class Subscription {
         this.customer = customer;
     }
 
-    public Date getBegin_contract_period() {
+    public LocalDate getBegin_contract_period() {
         return begin_contract_period;
     }
 
-    public void setBegin_contract_period(Date begin_contract_period) {
+    public void setBegin_contract_period(LocalDate begin_contract_period) {
         this.begin_contract_period = begin_contract_period;
     }
 
-    public Date getEnd_contract_period() {
+    public LocalDate getEnd_contract_period() {
         return end_contract_period;
     }
 
-    public void setEnd_contract_period(Date end_contract_period) {
+    public void setEnd_contract_period(LocalDate end_contract_period) {
         this.end_contract_period = end_contract_period;
     }
 
