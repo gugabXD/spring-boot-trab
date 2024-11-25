@@ -15,8 +15,8 @@ import com.projarq.trabfinal.domain.entities.SubscriptionModel;
 // import com.projarq.trabfinal.aplication.dtos.SubscriptionDTO;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Calendar;
+import java.util.List;
 
 @Service
 public class SubscriptionService {
@@ -56,7 +56,13 @@ public class SubscriptionService {
         long id = subscriptionRepository.findLastSubscriptionCode() != null ? 
                 subscriptionRepository.findLastSubscriptionCode() + 1 : 1;
 
-        return new SubscriptionModel(id, app, customer, new Date(), new Date());
+        Date currentDate = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(currentDate);
+        calendar.add(Calendar.DAY_OF_YEAR, 7);
+        Date oneWeekAhead = calendar.getTime();
+
+        return new SubscriptionModel(id, app, customer, currentDate, oneWeekAhead);
         }
 
         public List<SubscriptionModel> getAppCode(long appId) {
