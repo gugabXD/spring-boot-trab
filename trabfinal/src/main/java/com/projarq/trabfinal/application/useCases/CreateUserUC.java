@@ -1,4 +1,4 @@
-package com.projarq.trabfinal.aplication.useCases;
+package com.projarq.trabfinal.application.useCases;
 
 import org.springframework.stereotype.Component;
 

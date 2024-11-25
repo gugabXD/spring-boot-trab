@@ -10,6 +10,7 @@ import com.projarq.trabfinal.domain.services.UserService;
 import com.projarq.trabfinal.domain.entities.ApplicationModel;
 import com.projarq.trabfinal.domain.entities.SubscriptionModel;
 import com.projarq.trabfinal.domain.entities.PaymentModel;
+import com.projarq.trabfinal.application.dtos.SubscriptionDTO;
 
 import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,15 +71,15 @@ public class Controller {
     }
 
     @PostMapping("/servcad/assinaturas")
-    public String createSubscription(@RequestBody SubscriptionRequest subscription) {
+    public String createSubscription(@RequestBody SubscriptionDTO subscription) {
         long customerCode = subscription.getCustomerCode();
         long appCode = subscription.getApplicationCode();
         return subscriptionService.createSubscription(customerCode, appCode).toString();
     }
 
-    @PostMapping("/servcad/aplicativos/atualizacusto/{cost}")
-    public ApplicationModel updateAppCost(@PathVariable long idApp, @RequestBody double cost) {
-        return applicationService.updateMonthlyCost(idApp, cost);
+    @PostMapping("/servcad/aplicativos/atualizacusto/{idApp}")
+    public String updateAppCost(@PathVariable long idApp, @RequestBody Map<String, Double> cost) {
+        return applicationService.updateMonthlyCost(idApp, cost.get("cost")).toString();
     }
 
     @GetMapping("/servcad/assinaturas/{type}")
@@ -140,23 +141,6 @@ public class Controller {
         return this.subscriptionService.isActive(codass);
     }
 
-    public static class SubscriptionRequest {
-        private long customerCode;
-        private long applicationCode;
-
-        public SubscriptionRequest(long customerCode, long applicationCode) {
-            this.customerCode = customerCode;
-            this.applicationCode = applicationCode;
-        }
-
-        public long getCustomerCode() {
-            return customerCode;
-        }
-
-        public long getApplicationCode() {
-            return applicationCode;
-        }
-    }
     public static class PaymentRequest {
         private String day;
         private String month;

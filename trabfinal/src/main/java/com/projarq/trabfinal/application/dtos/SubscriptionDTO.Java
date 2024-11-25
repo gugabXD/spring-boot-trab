@@ -1,7 +1,7 @@
-package com.projarq.trabfinal.aplication.dtos;
+package com.projarq.trabfinal.application.dtos;
 
 public class SubscriptionDTO {
-     private long customerCode;
+    private long customerCode;
      private long appCode;
 
      public long getCustomerCode() {
@@ -12,7 +12,7 @@ public class SubscriptionDTO {
           this.customerCode = customerCode;
       }
   
-      public long getAppCode() {
+      public long getApplicationCode() {
           return appCode;
       }
   
@@ -20,4 +20,3 @@ public class SubscriptionDTO {
           this.appCode = appCode;
       }
 }
-

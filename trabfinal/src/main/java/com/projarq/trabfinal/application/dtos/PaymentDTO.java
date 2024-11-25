@@ -1,4 +1,4 @@
-package com.projarq.trabfinal.aplication.dtos;
+package com.projarq.trabfinal.application.dtos;
 
 
 public class PaymentDTO {
