@@ -8,7 +8,9 @@ import java.util.List;
 
 public interface PaymentRepositoryInterface {
     PaymentModel save(PaymentModel Payment);
-    List<PaymentModel> findBySubscription(SubscriptionModel Subscription);
-    List<PaymentModel> findByPaymentDate(Date paymentDate);
+
+    List<PaymentModel> findBySubscriptionCode(SubscriptionModel Subscription);
+
+    List<PaymentModel> findByDate(Date date);
 
 }

@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface ApplicationRepositoryInterface {
     List<ApplicationModel> findAll();
-    ApplicationModel findById(long id);
-    List<ApplicationModel> findByNome(String nome);
-    List<ApplicationModel> findByMonthlyCost(double custoMensal);
+    ApplicationModel findByCode(long id);
+    List<ApplicationModel> findByName(String nome);
+    List<ApplicationModel> findByMonthCost(double custoMensal);
     ApplicationModel save(ApplicationModel aplicativo);
 }

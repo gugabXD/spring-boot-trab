@@ -1,8 +1,6 @@
 package com.projarq.trabfinal.adapterInterface.repositories.entities;
 
 import com.projarq.trabfinal.domain.entities.SubscriptionModel;
-import com.projarq.trabfinal.domain.entities.CustomerModel;
-import com.projarq.trabfinal.domain.entities.ApplicationModel;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

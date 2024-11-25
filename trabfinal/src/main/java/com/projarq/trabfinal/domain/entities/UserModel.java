@@ -2,16 +2,16 @@ package com.projarq.trabfinal.domain.entities;
 
 public class UserModel {
     
-    private String user;
+    private String userName;
     private String password;
 
-    public UserModel(String user, String password) {
-        this.user = user;
+    public UserModel(String userName, String password) {
+        this.userName = userName;
         this.password = password;
     }
 
     public String getUser() {
-        return user;
+        return userName;
     }
 
     public String getPassword() {
