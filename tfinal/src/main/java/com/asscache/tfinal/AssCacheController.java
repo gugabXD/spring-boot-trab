@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import jakarta.validation.Valid;
 
 @RestController
-public class AssCacheController{
+public class AssCacheController {
 
     private final AssinaturaRepository assinaturaRepository;
 
@@ -17,14 +17,14 @@ public class AssCacheController{
     public AssCacheController(AssinaturaRepository assinaturaRepository) {
         this.assinaturaRepository = assinaturaRepository;
     }
-    
+
     @GetMapping("")
-    public String WelcomeMsg(){
+    public String WelcomeMsg() {
         return ("Hello World");
     }
 
     @GetMapping("/subscription/{subscriptionId}")
-    public ResponseEntity<?> getSubscription(@PathVariable Long subscriptionId){
+    public ResponseEntity<?> getSubscription(@PathVariable Long subscriptionId) {
         Assinatura assinatura = assinaturaRepository.findByCode(subscriptionId);
         if (assinatura != null) {
             return ResponseEntity.ok(assinatura);
@@ -37,18 +37,29 @@ public class AssCacheController{
     public ResponseEntity<?> isSubscriptionvalid(@PathVariable Long subscriptionId) {
         Assinatura assinatura = assinaturaRepository.findByCode(subscriptionId);
         if (assinatura != null) {
-            if (assinatura.getBegin_contract_period().before(new LocalDate()) && assinatura.getEnd_contract_period().after(new LocalDate())) {
+
+            LocalDate today = LocalDate.now();
+            LocalDate inicio = assinatura.getBegin_contract_period();
+            LocalDate fim = assinatura.getEnd_contract_period();
+
+            if ((inicio.isBefore(today) || inicio.isEqual(today)) && fim.isAfter(today)) {
+
                 return ResponseEntity.ok(true);
+
             } else {
+
                 return ResponseEntity.ok(false);
+
             }
-        } else {
+        } //faz função para questionar ao main t1
+        else
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(false);
-        }
+
     }
-    
+
+    // TODO refazer função
     @PostMapping("/renew/subscription")
-    public ResponseEntity<?> renewSubscription(@Valid @RequestBody Assinatura assinatura){
-        return assinatura;
+    public ResponseEntity<?> renewSubscription(@Valid @RequestBody Assinatura assinatura) {
+        return ResponseEntity.ok(true);
     }
 }
