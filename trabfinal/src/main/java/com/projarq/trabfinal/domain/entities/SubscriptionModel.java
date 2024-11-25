@@ -38,6 +38,22 @@ public class SubscriptionModel {
         return endContractPeriod;
     }
 
+    public void setEndContractPeriod(Date endContractPeriod) {
+        this.endContractPeriod = endContractPeriod;
+    }
+    
+    public boolean isActive() {
+        if (beginContractPeriod == null || endContractPeriod == null) {
+            return false;
+        }
+        Date now = new Date();
+        return beginContractPeriod.before(now) && endContractPeriod.after(now);
+    }
+
+    public String getStatus() {
+        return isActive() ? "ATIVA" : "CANCELADA";
+    }
+
     @Override
     public String toString(){
         return "SubscriptionModel{" +
@@ -46,6 +62,7 @@ public class SubscriptionModel {
                 ", customer=" + customer +
                 ", beginContractPeriod=" + beginContractPeriod +
                 ", endContractPeriod=" + endContractPeriod +
+                " isActive=" + getStatus() +
                 '}';
     }
 }

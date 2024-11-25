@@ -78,6 +78,18 @@ public class Subscription {
         this.end_contract_period = end_contract_period;
     }
 
+    public boolean isActive() {
+        if (begin_contract_period == null || end_contract_period == null) {
+            return false;
+        }
+        Date now = new Date();
+        return begin_contract_period.before(now) && end_contract_period.after(now);
+    }
+
+    public String getStatus() {
+        return isActive() ? "ATIVA" : "CANCELADA";
+    }
+
     public static SubscriptionModel toSubscriptionModel(Subscription subscription) {
         return new SubscriptionModel(
                 subscription.getCode(),

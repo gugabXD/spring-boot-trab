@@ -67,9 +67,7 @@ public class SubscriptionRepository implements SubscriptionRepositoryInterface {
 
     @Override
     public SubscriptionModel findByCode(long code) {
-        return jpaSubscriptionRepositoryInterface.findById(code)
-                .map(Subscription::toSubscriptionModel)
-                .orElse(null);
+        return Subscription.toSubscriptionModel(jpaSubscriptionRepositoryInterface.findByCode(code));
     }
 
     @Override

@@ -12,10 +12,11 @@ import com.projarq.trabfinal.adapterInterface.repositories.repositoriesImplement
 import com.projarq.trabfinal.domain.entities.ApplicationModel;
 import com.projarq.trabfinal.domain.entities.CustomerModel;
 import com.projarq.trabfinal.domain.entities.SubscriptionModel;
+// import com.projarq.trabfinal.aplication.dtos.SubscriptionDTO;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Calendar;
+import java.util.List;
 
 @Service
 public class SubscriptionService {
@@ -55,7 +56,13 @@ public class SubscriptionService {
         long id = subscriptionRepository.findLastSubscriptionCode() != null ? 
                 subscriptionRepository.findLastSubscriptionCode() + 1 : 1;
 
-        return new SubscriptionModel(id, app, customer, new Date(), new Date());
+        Date currentDate = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(currentDate);
+        calendar.add(Calendar.DAY_OF_YEAR, 7);
+        Date oneWeekAhead = calendar.getTime();
+
+        return new SubscriptionModel(id, app, customer, currentDate, oneWeekAhead);
         }
 
         public List<SubscriptionModel> getAppCode(long appId) {
@@ -66,14 +73,19 @@ public class SubscriptionService {
                 return this.subscriptionRepository.findByCustomerCode(customerId);
         }
 
+        public void saveSubscription(SubscriptionModel subscription){
+                SubscriptionModel newSubscription = new SubscriptionModel(subscription.getCode(), subscription.getApplication(), subscription.getCustomer(), subscription.getBeginContractPeriod(), subscription.getEndContractPeriod());
+                this.subscriptionRepository.save(newSubscription);
+        }
+
         public List<SubscriptionModel> findByType(String type) {
                 if(type.toUpperCase().equals("TODAS")) {
                         return this.subscriptionRepository.findAll();
                 }
-                if(type.toUpperCase().equals("ATIVA")) {
+                if(type.toUpperCase().equals("ATIVAS")) {
                         return this.subscriptionRepository.findActiveSubscriptions();
                 } 
-                if(type.toUpperCase().equals("CANCELADA")){
+                if(type.toUpperCase().equals("CANCELADAS")){
                         return this.subscriptionRepository.findInactiveSubscriptions();
                 }
                 return null;
@@ -81,9 +93,12 @@ public class SubscriptionService {
 
         public boolean isActive(long code) {
                 SubscriptionModel subscription = this.subscriptionRepository.findByCode(code);
-                Date today = new Date();
-                return subscription.getBeginContractPeriod().before(today) && subscription.getEndContractPeriod().after(today);
+                return subscription.isActive();
         }
+
+        public SubscriptionModel getSubscriptionCode(long subscriptionCode) {
+                return this.subscriptionRepository.findByCode(subscriptionCode);
+            }
 
     }
 
